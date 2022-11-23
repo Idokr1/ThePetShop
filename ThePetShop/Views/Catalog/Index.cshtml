@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ThePetShop.Models.Animal>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/css/mainStyle.css" rel="stylesheet" type="text/css" asp-append-version="true">
+</head>
+<body>
+    <p class="p">Choose a Category of Pets to Display:</p>
+    <div class="centeredDiv">
+            <form action="/Catalog/Index" method="post">        
+            <fieldset>
+            Choose Category
+                <select id="Category" name="Category">
+                    <option value="">All categories</option>
+                    <option value="Birds">Birds</option>
+                    <option value="Dogs">Dogs</option>
+                    <option value="Cats">Cats</option>
+                </select>
+            <p><input class="btn btn-outline-success active" type="submit" value="Submit" /></p>            
+        </fieldset>               
+    </form>
+    </div>
+
+    <br />
+
+    @foreach (var animal in Model)
+    {
+        <table class="table table-bordered table-responsive">
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Find Out More</th>
+            </tr>
+            <tr>
+                <td class="tdCatalog"> <img class="images" src="@animal.PicturePath" /></td>
+                <td class="tdCatalog">@animal.Name</td>
+                <td class="tdCatalog"><a class="btn btn-outline-info active" role="button" asp-action="AnimalDetails" asp-route-animalId="@animal.AnimalId" asp-controller="Catalog">Details</a></td>
+            </tr>
+        </table>
+    }
+</body>
+</html>
+

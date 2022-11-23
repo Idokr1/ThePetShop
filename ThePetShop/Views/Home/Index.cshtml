@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ThePetShop.Models.Animal>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/css/mainStyle.css" rel="stylesheet" type="text/css" asp-append-version="true">
+</head>
+<body>   
+    <p class="p">The Top 2 Most Commented Pets:</p>
+
+    @foreach (var animal in Model)
+    {
+        <table class="table table-bordered table-responsive">
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Number of Comments</th>
+            </tr>
+            <tr>
+                <td class="tdImage"> <img class="images" src="@animal.PicturePath" /></td>
+                <td class="tdName">@animal.Name</td>
+                <td class="tdDescription">@animal.Description</td>
+                <td class="tdNumOfComments">@animal.Comments!.Count()</td>
+            </tr>
+        </table>
+    }
+</body>
+</html>
+

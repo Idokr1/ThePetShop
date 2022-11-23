@@ -1,0 +1,65 @@
+﻿@model ThePetShop.Models.Animal
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/css/mainStyle.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+    <p class="p">Add a New Animal:</p>
+
+    @using (Html.BeginForm("Create", "Admin", FormMethod.Post))
+    {
+        <div class="row justify-content-around">
+            <div class="col-5">
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                    <input asp-for="@Model.Name" required placeholder="Animal Name" class="form-control" />
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="Age" class="control-label"></label>
+                    <span asp-validation-for="Age" class="text-danger"></span>
+                    <input asp-for="@Model.Age" required placeholder="Age" class="form-control" min="1" max="50" />
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                    <input asp-for="@Model.Description" required placeholder="Description" class="form-control" maxlength="500" />
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="PicturePath" class="control-label"></label>
+                    <span asp-validation-for="PicturePath" class="text-danger"></span>
+                    <input asp-for="@Model.PicturePath" required placeholder="Picture Link" class="form-control" type="url"/>                    
+                </div>
+                <br />
+
+                <form action="/Catalog/Index" method="post">
+                    <div class="centeredDiv">
+                        <fieldset>
+                            Category
+                            <select id="categoryID" name="categoryID">
+                                <option value="1">Birds</option>
+                                <option value="2">Dogs</option>
+                                <option value="3">Cats</option>
+                            </select>
+                            <div>
+                                <input class="btn btn-outline-success active" role="button" type="submit" value="Add Animal" />
+                            </div>
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+        </div>
+    }
+</body>
+</html>
+
+

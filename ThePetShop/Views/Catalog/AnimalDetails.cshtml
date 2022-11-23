@@ -1,0 +1,52 @@
+﻿@model ThePetShop.Models.Animal
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Animal Details</title>
+    <link href="~/css/mainStyle.css" rel="stylesheet" type="text/css" asp-append-version="true">
+</head>
+<body>
+    <p class="p">Full Details of @Model.Name:</p>    
+    <table style="table-layout:unset;" class="table table-bordered table-responsive">
+        <tr>
+            <th>Image</th>
+            <th>Name</th>            
+            <th>Age</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>All Comments</th>
+            <th>Add Comment</th>
+        </tr>
+        <tr>
+            <td> <img class="images" src="@Model.PicturePath" /></td>
+            <td>@Model.Name</td>            
+            <td>@Model.Age</td>
+            <td>@Model.Category!.CategoryName</td>
+            <td>@Model.Description </td>
+            <td>
+                @foreach (var comment in Model.Comments!)
+                {
+                    <div class="commentSection">
+                        <p>@comment.CommentText</p>
+                    </div>
+                }
+            </td>
+            <td>
+                @using (Html.BeginForm("AddComment", "Catalog", new { animalId = Model.AnimalId }, FormMethod.Post))
+                {
+                    @Html.TextBox("comment", null, new { animalId = Model.AnimalId, required=""})
+
+                    <input class="btn btn-outline-info active mt-lg-3" type="submit" value="Add Comment" />
+                }
+            </td>
+        </tr>
+
+    </table>
+
+
+</body>
+</html>
+

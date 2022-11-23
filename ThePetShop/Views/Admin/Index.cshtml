@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ThePetShop.Models.Animal>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/css/mainStyle.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+    <div class="centeredDiv">
+        <p class="newAnimal">Create New Animal:</p>
+        <a class="btn btn-outline-success active" role="button" asp-action="CreateAnimal" asp-controller="Admin">Create</a>
+        <br /> <br />
+
+        <form action="/Admin/Index" method="post">
+            <fieldset>
+                Choose Category
+                <select id="Category" name="Category">
+                    <option value="">All categories</option>
+                    <option value="Birds">Birds</option>
+                    <option value="Dogs">Dogs</option>
+                    <option value="Cats">Cats</option>
+                </select>
+                <p><input class="btn btn-outline-success active" type="submit" value="Submit" /> </p>
+            </fieldset>
+        </form>
+    </div>
+    <br />
+
+    @foreach (var animal in Model)
+    {
+        <table class="table table-bordered table-responsive">
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Description</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr>
+                <td class="tdImage"><img class="images" src="@animal.PicturePath" /></td>
+                <td class="tdName">@animal.Name</td>
+                <td class="tdAge">@animal.Age</td>
+                <td class="tdDescriptionAdminPanel">@animal.Description</td>
+                <td class="tdEdit"><a class="btn btn-outline-info active" role="button" asp-action="Edit" asp-route-id="@animal.AnimalId" asp-controller="Admin">Edit</a></td>
+                <td class="tdDelete"><a class="btn btn-outline-info active" role="button" asp-action="Delete" asp-route-id="@animal.AnimalId" asp-controller="Admin">Delete</a></td>
+            </tr>
+        </table>
+    }
+</body>
+</html>
+
